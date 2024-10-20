@@ -13,6 +13,7 @@
 .chat-history {
   background-image: url("/images/chatHistoryBackground.jpg");
   background-position: center;
+  flex-direction: column !important;
   display: flex;
   flex-grow: 1;
   overflow-y: auto;

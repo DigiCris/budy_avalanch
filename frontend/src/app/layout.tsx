@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ChatbotHeader from "@/components/ChatbotHeader";
+import "./ChatbotBackgroundImage.css";
 
 export const metadata: Metadata = {
   title: "Budy",
@@ -15,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="ChatbotBackgroundImage">
         <ChatbotHeader />
         {children}
       </body>
