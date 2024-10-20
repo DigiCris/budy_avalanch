@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Image from 'next/image';
 import styles from '../public/Header.module.css';
 import { useWeb3Auth } from '@/context/Web3AuthContext'; // Importa el contexto
+import ethersRPC from "@/app/ethersRPC";
 
 function ChatbotHeader() {
   const { provider, loggedIn, login, logout } = useWeb3Auth(); // Usa el contexto
@@ -12,11 +13,22 @@ function ChatbotHeader() {
   const pathname = usePathname();
   if (pathname === "/debug") return null;
 
+  const getBalanceUser = async () => {
+    if (!provider) {
+      console.error("Provider no disponible");
+      return;
+    }
+    const balance = await ethersRPC.getBalance(provider);
+    console.log(balance);
+    return balance;
+  }
+  
   const loggedInView = (
     <div className={styles.buttonContainer}>
       <button onClick={logout} className={styles.button}>
         Log Out
       </button>
+      <button onClick={getBalanceUser}></button>
     </div>
   );
 
