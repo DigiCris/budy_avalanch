@@ -1,37 +1,59 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from 'next/image'
+
 import { IProvider } from "@web3auth/base";
 import ethersRPC from "../app/ethersRPC";
 import { web3auth } from "../lib/web3auth";
-import styles from '../public/Header.module.css';
-import { useWeb3Auth } from '@/context/Web3AuthContext'; // Importa el contexto
-import ethersRPC from "@/app/ethersRPC";
+import styles from '../public/DefaultHeader.module.css';
 
-function ChatbotHeader() {
-  const { provider, loggedIn, login, logout } = useWeb3Auth(); // Usa el contexto
+function DefaultHeader() {
+  const [provider, setProvider] = useState<IProvider | null>(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const init = async () => {
+      try {
+        await web3auth.initModal();
+        setProvider(web3auth.provider);
+
+        if (web3auth.connected) {
+          setLoggedIn(true);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    init();
+  }, []);
+
+  const login = async () => {
+    const web3authProvider = await web3auth.connect();
+    console.log(web3authProvider)
+    setProvider(web3authProvider);
+    if (web3auth.connected) {
+      setLoggedIn(true);
+    }
+  };
+
+  const logout = async () => {
+    await web3auth.logout();
+    setProvider(null);
+    setLoggedIn(false);
+  };
 
   const pathname = usePathname();
   if (pathname === "/debug") return null;
 
-  const getBalanceUser = async () => {
-    if (!provider) {
-      console.error("Provider no disponible");
-      return;
-    }
-    const balance = await ethersRPC.getBalance(provider);
-    console.log(balance);
-    return balance;
-  }
-  
   const loggedInView = (
     <div className={styles.buttonContainer}>
       <button onClick={logout} className={styles.button}>
         Log Out
       </button>
-      <button onClick={getBalanceUser}></button>
     </div>
   );
 
@@ -47,7 +69,7 @@ function ChatbotHeader() {
     <>
       <div
         className={styles.header}>
-        <Link href="/chatbot">
+        <Link href="/">
           <div
             className={styles.logoContainer}
           >
@@ -61,4 +83,4 @@ function ChatbotHeader() {
   );
 }
 
-export default ChatbotHeader;
+export default DefaultHeader;

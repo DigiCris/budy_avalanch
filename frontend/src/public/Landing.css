@@ -1,6 +1,5 @@
 .home {
     background-color: rgba(229, 231, 235, 0.8); /* bg-gray-100/80 */
-    padding: 2rem 0; /* espacio superior e inferior */
   }
   
   .hero {
@@ -17,15 +16,19 @@
   }
   
   .container {
+    flex-wrap: wrap;
     max-width: 1300px; /* Ajusta según sea necesario */
-    margin: 0 auto;
     padding: 0 2.5rem; /* px-10 */
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
   }
   
   .content {
     display: flex;
+    width: 40vw;
     flex-direction: column;
-    gap: 1rem; /* gap-4 */
+    flex-wrap: wrap;
   }
   
   .content h1 {
@@ -44,8 +47,10 @@
   }
   
   .image-container {
-    width: 50%; /* w-1/2 */
-    position: relative;
+    width: 40vw; /* w-1/2 */
+    display: flex;
+    align-content: space-between;
+    justify-content: center;
   }
   
   .logo {
@@ -53,21 +58,72 @@
   }
   
   .features {
-    padding: 2.5rem 0; /* pt-10 */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    flex-direction: column;
+  }
+
+  .chatWithBudy{
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    justify-content: flex-end;
+  }
+
+  .budyChat{
+    position: absolute;
   }
   
-  .feature-item {
+  .feature-item-1 {
     display: flex;
     width: 60%; /* w-3/5 */
-    margin: 0 auto; /* centrar */
-    gap: 1rem; /* gap-4 */
+    align-items: center;
+    padding: 2rem 2.5rem 0.25rem;
+  }
+
+  .feature-item-2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 60%; /* w-3/5 */
+    align-self: flex-end;
+    align-items: center;
+    padding: 0.5rem 2.5rem;
+  }
+
+  .feature-item-3 {
+    display: flex;
+    width: 60%; /* w-3/5 */
+    padding: 0.5rem 2.5rem 2rem;
+    align-items: center;
   }
   
   .feature-text {
     padding: 1.5rem; /* p-6 */
     flex: 1;
-    background-color: #E0F7FA; /* bg-tip-divs */
-    border-radius: 1.5rem; /* redondear esquinas */
+    background-color: #B1CFC5; 
+    border-radius: 1.5rem; 
+  }
+
+  .feature-text-1{
+    padding: 1.5rem; /* p-6 */
+    flex: 1;
+    background-color: #B1CFC5; 
+    border-radius: 5rem 0 0 5rem;
+  }
+
+  .feature-text-2{
+    padding: 1.5rem; /* p-6 */
+    flex: 1;
+    background-color: #B1CFC5; 
+    border-radius: 5rem 0 0 5rem;
+  }
+
+  .feature-text-3{
+    padding: 1.5rem; /* p-6 */
+    flex: 1;
+    background-color: #B1CFC5; 
+    border-radius: 0 5rem 5rem 0;
   }
   
   .feature-image {
@@ -86,36 +142,55 @@
   }
   
   .bg-dark-blue {
-    background-color: #1E3A8A; /* dark-blue */
+    background-color: #004C8C; /* dark-blue */
   }
   
   .title {
+    font-family: poppins, sans-serif;
     margin-bottom: 2rem; /* mb-8 */
     font-size: 2rem; /* text-2xl */
     font-weight: bold;
     color: #94D9F0; /* text-cyan-100 */
   }
+
+  .darkBlueText {
+    flex-wrap: wrap;
+    font-size: 1rem;
+    height: 50vh;
+    padding: 2.5rem; /* px-10 */
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+  }
   
   .list {
     list-style-type: disc; /* list-disc */
-    padding-left: 1rem; /* pl-4 */
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* grid-cols-2 */
-    gap: 1rem; /* gap-4 */
+    gap: 3rem; /* gap-4 */
     color: white; /* text-white */
   }
   
   .footer {
+    display: flex;
     background-color: rgba(226, 232, 240, 0.8); /* bg-slate-100/80 */
+    height: 40vh;
+  }
+
+  .footerContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 2.5rem;
   }
   
   .footer h2 {
     color: #006400; /* text-green-800 */
     font-weight: bold;
-    font-size: 1.25rem; /* text-xl */
+    font-size: 2rem; /* text-xl */
   }
   
   .footer p {
-    font-size: 0.75rem; /* text-xs */
+    font-size: 1rem; /* text-xs */
   }
   
