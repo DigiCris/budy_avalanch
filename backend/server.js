@@ -3,13 +3,13 @@ const fileUpload = require('express-fileupload');
 const pdf = require('pdf-parse');
 const axios = require('axios');
 const cors = require('cors');
-
-const Web3 = require('web3');
-
 const app = express();
+const {Web3} = require('web3');
+require('dotenv').config();
 
 app.use(cors());
 app.use(fileUpload());
+app.use(express.json()); // Lo agrego cmarchese
 
 const apiKey = '';
 
@@ -73,12 +73,35 @@ app.post('/api/transferBudy', async (req, res) => {
   console.log(`Attempting to make transaction from ${addressFrom} to ${addressTo} of ${amount}`);
 
   try {
+    // Obtener el balance de la dirección
+    const balance = await web3.eth.getBalance(addressFrom);
+    const ethBalance = BigInt(balance); // Convertir balance a BigInt
+
+    // Obtener el gas estimado
+    const gasEstimate = await web3.eth.estimateGas({
+      from: addressFrom,
+      to: addressTo,
+      value: web3.utils.toWei(amount, 'ether'),
+    });
+
+    // Obtener el precio del gas
+    const gasPrice = BigInt(await web3.eth.getGasPrice()); // Convertir gasPrice a BigInt
+
+    // Convertir el monto a Wei y calcular el costo total en BigInt
+    const amountInWei = BigInt(web3.utils.toWei(amount, 'ether'));
+    const totalCost = amountInWei + (gasEstimate * gasPrice);
+
+    if (totalCost > ethBalance) {
+      return res.status(400).json({ error: 'Fondos insuficientes para cubrir la transacción.' });
+    }
+
     const createTransaction = await web3.eth.accounts.signTransaction(
       {
         from: addressFrom,
         to: addressTo,
-        value: web3.utils.toWei(amount, 'ether'),
-        gas: '21000',
+        value: amountInWei.toString(), // Asegúrate de enviar como string
+        gas: gasEstimate,
+        gasPrice: gasPrice.toString(), // Asegúrate de enviar como string
       },
       privKey
     );
