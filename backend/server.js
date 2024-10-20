@@ -53,7 +53,6 @@ app.post('/api/process-pdf', async (req, res) => {
 });
 
 
-
 app.post('/api/transferBudy', async (req, res) => {
   let amount = req.body.amount;
   let addressTo = req.body.to;
@@ -96,7 +95,6 @@ app.post('/api/transferBudy', async (req, res) => {
     res.status(500).json({ error: 'Error al procesar la transferencia.' });
   }
 });
-
 
 
 const PORT = 3001;
