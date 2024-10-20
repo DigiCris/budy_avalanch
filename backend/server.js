@@ -4,6 +4,8 @@ const pdf = require('pdf-parse');
 const axios = require('axios');
 const cors = require('cors');
 
+const Web3 = require('web3');
+
 const app = express();
 
 app.use(cors());
@@ -49,6 +51,53 @@ app.post('/api/process-pdf', async (req, res) => {
     res.status(500).send('Error al procesar el PDF.');
   }
 });
+
+
+
+app.post('/api/transferBudy', async (req, res) => {
+  let amount = req.body.amount;
+  let addressTo = req.body.to;
+
+  // Validaciones
+  if (typeof amount !== 'string' || isNaN(amount) || parseFloat(amount) <= 0) {
+    return res.status(400).json({ error: 'El monto debe ser un número positivo.' });
+  }
+
+  if (typeof addressTo !== 'string' || addressTo.trim() === '') {
+    return res.status(400).json({ error: 'La dirección debe ser una cadena no vacía.' });
+  }
+
+  const privKey = process.env.PRKEY; // Clave privada de Genesis
+  const addressFrom = process.env.ADDRESSFROM; // Dirección desde la que se envía
+  const web3 = new Web3(process.env.URL_NODE);
+
+  console.log(`Attempting to make transaction from ${addressFrom} to ${addressTo} of ${amount}`);
+
+  try {
+    const createTransaction = await web3.eth.accounts.signTransaction(
+      {
+        from: addressFrom,
+        to: addressTo,
+        value: web3.utils.toWei(amount, 'ether'),
+        gas: '21000',
+      },
+      privKey
+    );
+
+    // Enviar la transacción firmada
+    const createReceipt = await web3.eth.sendSignedTransaction(
+      createTransaction.rawTransaction
+    );
+
+    console.log(`Transaction successful with hash: ${createReceipt.transactionHash}`);
+    res.status(200).json({ message: 'Transacción procesada exitosamente.', transactionHash: createReceipt.transactionHash });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error al procesar la transferencia.' });
+  }
+});
+
+
 
 const PORT = 3001;
 app.listen(PORT, () => {
