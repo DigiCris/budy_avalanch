@@ -5,7 +5,6 @@ export function Landing() {
   const goToChatbot = () => {
     window.location.href = '/chatbot';
   }
-  //Azul claro: #7AD7E4
   return (
     <div className="home">
       <section className="hero">

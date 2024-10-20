@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from 'next/image'
+
 import { IProvider } from "@web3auth/base";
 import ethersRPC from "../app/ethersRPC";
 import { web3auth } from "../lib/web3auth";
-import styles from '../public/Header.module.css';
+import styles from '../public/DefaultHeader.module.css';
 
-function ChatbotHeader() {
+function DefaultHeader() {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -68,7 +69,7 @@ function ChatbotHeader() {
     <>
       <div
         className={styles.header}>
-        <Link href="/chatbot">
+        <Link href="/">
           <div
             className={styles.logoContainer}
           >
@@ -82,4 +83,4 @@ function ChatbotHeader() {
   );
 }
 
-export default ChatbotHeader;
+export default DefaultHeader;

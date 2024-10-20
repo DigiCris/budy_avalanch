@@ -1,8 +1,8 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import ChatbotHeader from "@/components/ChatbotHeader";
 import "./ChatbotBackgroundImage.css";
+import HeaderSelector from "@/components/HeaderSelector";
 
 export const metadata: Metadata = {
   title: "Budy",
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="ChatbotBackgroundImage">
-        <ChatbotHeader />
+        <HeaderSelector />
         {children}
       </body>
     </html>
