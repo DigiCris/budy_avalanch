@@ -10,7 +10,7 @@ import ethersRPC from "../app/ethersRPC";
 import { web3auth } from "../lib/web3auth";
 import styles from '../public/Header.module.css';
 
-function Header() {
+function ChatbotHeader() {
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -67,23 +67,20 @@ function Header() {
 
   return (
     <>
-      <header className={styles.header}>
+      <div
+        className={styles.header}>
         <Link href="/">
-          <div className={styles.logoContainer}>
-            <Image src="/budy.png" width={50} height={50} alt="Budy Logo" className={styles.logo} />
+          <div
+            className={styles.logoContainer}
+          >
+            <Image src="/images/budy.png" width={50} height={50} alt="Budy Logo" />
             <h1 className={styles.title}>Budy</h1>
           </div>
         </Link>
         <div>{loggedIn ? loggedInView : unloggedInView}</div>
-      </header>
-      <div id="console" style={{ whiteSpace: "pre-line" }}>
-        <p style={{ whiteSpace: "pre-line" }}></p>
-      </div>
-      <div className={styles.block} >
-
       </div>
     </>
   );
 }
 
-export default Header;
+export default ChatbotHeader;

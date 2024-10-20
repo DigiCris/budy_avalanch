@@ -1,8 +1,7 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-
+import ChatbotHeader from "@/components/ChatbotHeader";
 
 export const metadata: Metadata = {
   title: "Budy",
@@ -17,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header/>
+        <ChatbotHeader />
         {children}
       </body>
     </html>

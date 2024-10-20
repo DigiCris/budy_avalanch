@@ -94,7 +94,7 @@ export default function ComponentChatbot() {
 
   return (
     <div className="chatbot-container">
-      <div className="chat-history">
+      <div className="chat-history">  
         {messages.map((message, index) => (
           <div key={index} className={`message ${message.sender}`}>
             {message.text}
@@ -102,6 +102,13 @@ export default function ComponentChatbot() {
         ))}
       </div>
       <form onSubmit={handleSubmit} className="input-form">
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Escribe tu mensaje..."
+          className="chat-input"
+        />
         <label htmlFor="file-upload" className="file-upload-label">
           <Paperclip />
           <input
@@ -112,13 +119,6 @@ export default function ComponentChatbot() {
             style={{ display: 'none' }}
           />
         </label>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Escribe tu mensaje..."
-          className="chat-input"
-        />
         <button type="submit" className="send-button">
           <Send />
         </button>
