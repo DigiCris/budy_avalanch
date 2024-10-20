@@ -1,6 +1,7 @@
 import '../public/Landing.css';
 
 export function Landing() {
+  //Azul claro: #7AD7E4
   return (
     <div className="home">
       <section className="hero">
@@ -21,12 +22,14 @@ export function Landing() {
               Un simpático perro interactivo que está aquí para ayudarte a cuidar tu salud de manera fácil y segura.
             </p>
             <p className="description">
-              Solo tienes que decirle cómo te sientes. <br /> Gracias a la inteligencia artificial y la tecnología blockchain, toda la información que compartes con Budy es completamente privada y segura, tienes el control total de tu salud sin preocupaciones.
+              Solo tienes que decirle cómo te sientes. 
+              Gracias a la inteligencia artificial y la tecnología blockchain, 
+              toda la información que compartes con Budy es completamente privada y segura, 
+              tienes el control total de tu salud sin preocupaciones.
             </p>
           </div>
-
           <div className="image-container">
-            <img src="/logo.svg" alt="logo budy" className="logo" />
+            <img src="/images/budy.png" alt="logo budy" className="logo" />
           </div>
         </div>
       </section>
@@ -35,10 +38,14 @@ export function Landing() {
         <div className="feature-item">
           <div className="feature-text">
             <h3>Accede de manera autónoma y privada, sos dueño de tus datos</h3>
-            <p>Para que Budy pueda asesorarte con la mejor precisión, tenga en cuenta consultas anteriores y documentos compartidos. Buscamos lo mejor para vos</p>
+            <p>
+              Para que Budy pueda asesorarte con la mejor precisión, 
+              tenga en cuenta consultas anteriores y documentos compartidos. 
+              Buscamos lo mejor para vos
+            </p>
           </div>
           <div className="feature-image">
-            <img src="/item-1.svg" alt="img ss" />
+            <img src="/images/item-1.svg" alt="img ss" />
           </div>
         </div>
 
@@ -47,13 +54,13 @@ export function Landing() {
             <p>Carga tu historial clínico e informes médicos <br /> Budy está para vos</p>
           </div>
           <div className="feature-image">
-            <img src="/item-2.svg" alt="img ss" />
+            <img src="/images/item-2.svg" alt="img ss" />
           </div>
         </div>
 
         <div className="feature-item">
           <div className="feature-image">
-            <img src="/item-3.svg" alt="img ss" />
+            <img src="/images/item-3.svg" alt="img ss" />
           </div>
           <div className="feature-text">
             <p>Escríbenos desde nuestra web o para una mejor experiencia en la comodidad de tu WhatsApp</p>
@@ -62,7 +69,7 @@ export function Landing() {
       </section>
 
       <section className="bg-dark-blue">
-        <div className="container">
+        <div className="darkBlueText">
           <h2 className="title">Te ofrecemos</h2>
           <ul className="list">
             <li>Cargar y controlar tus historiales médicos de manera segura</li>
@@ -76,10 +83,19 @@ export function Landing() {
       </section>
 
       <footer className="footer">
-        <div className="container">
+        <div className="footerContainer">
           <h2>Siempre a tu alcance</h2>
           <p>
-            En Budy, utilizamos la tecnología blockchain para garantizar la máxima seguridad y privacidad de tu información de salud. A través de un smart contract, se crea un acuerdo digital que permite a Budy acceder únicamente a la información necesaria cuando interactúas con la aplicación. Este smart contract asegura que, fuera de estas interacciones, Budy no tiene acceso a tu wallet ni a tu información personal. Además, la naturaleza descentralizada del blockchain significa que tu información no puede ser alterada, vulnerada o utilizada para otros fines sin tu consentimiento. Tu privacidad y seguridad están siempre protegidas, permitiéndote confiar en Budy como tu compañero de salud.
+            En Budy, utilizamos la tecnología blockchain para garantizar 
+            la máxima seguridad y privacidad de tu información de salud. 
+            A través de un smart contract, se crea un acuerdo digital que permite 
+            a Budy acceder únicamente a la información necesaria cuando interactúas con la aplicación. 
+            Este smart contract asegura que, fuera de estas interacciones, 
+            Budy no tiene acceso a tu wallet ni a tu información personal. 
+            Además, la naturaleza descentralizada del blockchain significa que tu información no puede ser alterada, 
+            vulnerada o utilizada para otros fines sin tu consentimiento. 
+            Tu privacidad y seguridad están siempre protegidas, 
+            permitiéndote confiar en Budy como tu compañero de salud.
           </p>
         </div>
       </footer>
